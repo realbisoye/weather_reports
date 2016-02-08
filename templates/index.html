@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Weather Reports</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+
+<body>
+    <div class="main_wrapper">
+        <h1 class="title">
+  CIMIS and Weather Underground Weather Report Comparism
+</h1>
+        <div class="wrapper">
+            <table border="1">
+                <tr>
+                    <td class="table_header" colspan="10"> CIMIS Weather Data</td>
+                </tr>
+                <tr class="headings">
+                    <td>
+                        Date
+                    </td>
+                    <td>
+                        Air Temperature
+                    </td>
+                    <td>
+                        Dew Point
+                    </td>
+                    <td>
+                        Precip
+                    </td>
+                    <td>
+                        Relative Humidity
+                    </td>
+                    <td>
+                        Soil Temperature
+                    </td>
+                    <td>
+                        Vapour Pressure
+                    </td>
+                    <td>
+                        Wind Direction
+                    </td>
+                    <td>
+                        Wind Speed
+                    </td>
+                    <td>
+                        ETo
+                    </td>
+                </tr>
+                <tr class="contents">
+                    {% for report in weather_reports['CIMIS']%}
+                    <td>
+                        {{ report.Date }}
+                    </td>
+                    <td>
+                        {{ report.DayAirTmpAvg.Value }} &nbsp {{ report.DayAirTmpAvg.Unit }}
+                    </td>
+                    <td>
+                        {{ report.DayDewPnt.Value }} &nbsp {{ report.DayDewPnt.Unit }}
+                    </td>
+                    <td>
+                        {{ report.DayPrecip.Value }} &nbsp {{ report.DayPrecip.Unit }}
+                    </td>
+                    <td>
+                        {{ report.DayRelHumAvg.Value }} &nbsp {{ report.DayRelHumAvg.Unit }}
+                    </td>
+                    <td>
+                        {{ report.DaySoilTmpAvg.Value }} &nbsp {{ report.DaySoilTmpAvg.Unit }}
+                    </td>
+                    <td>
+                        {{ report.DayVapPresAvg.Value }} &nbsp {{ report.DayVapPresAvg.Unit }}
+                    </td>
+                    <td>
+                        {{ report.DayWindEne.Value }} &nbsp {{ report.DayWindEne.Unit }}
+                    </td>
+                    <td>
+                        {{ report.DayWindSpdAvg.Value }} &nbsp {{ report.DayWindSpdAvg.Unit }}
+                    </td>
+                    <td>
+                        {{ report.DayEto.Value }} &nbsp {{ report.DayEto.Unit }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="wrapper">
+            <table border="1">
+                <tr>
+                    <td class="table_header" colspan="10"> Weather Underground Weather Data</td>
+                </tr>
+                <tr class="headings">
+                    <td>
+                        Date
+                    </td>
+                    <td>
+                        Air Temperature
+                    </td>
+                    <td>
+                        Dew Point
+                    </td>
+                    <td>
+                        Precip
+                    </td>
+                    <td>
+                        Relative Humidity
+                    </td>
+                    <td>
+                        Soil Temperature
+                    </td>
+                    <td>
+                        Vapour Pressure
+                    </td>
+                    <td>
+                        Wind Direction
+                    </td>
+                    <td>
+                        Wind Speed
+                    </td>
+                    <td>
+                        ETo
+                    </td>
+                </tr>
+                <tr class="contents">
+                    {% for report in weather_reports['WU'] %}
+                    <td>
+                        {{ report.date.pretty }}
+                    </td>
+                    <td>
+                        {{ report.tempi }} &nbsp (F)
+                    </td>
+                    <td>
+                        {{ report.dewpti }} &nbsp (F)
+                    </td>
+                    <td>
+                        {{ report.precipi }} &nbsp (in)
+                    </td>
+                    <td>
+                        {{ report.hum }} &nbsp (in)
+                    </td>
+                    <td>
+                        N/A
+                    </td>
+                    <td>
+                        {{ report.pressurei }} &nbsp (F)
+                    </td>
+                    <td>
+                        {{ report.wdire }} &nbsp ({{report.wdird }}&deg)
+                    </td>
+                    <td>
+                        {{ report.wspdi }} &nbsp (MPH)
+                    </td>
+                    <td>
+                        {{ report.ETo }} &nbsp (in)
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
